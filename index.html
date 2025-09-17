@@ -1,0 +1,1712 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Automation &amp; Consulting — Never Miss a Lead</title>
+  <meta name="description" content="AI automation that captures every lead, automates workflows, and drives measurable growth. Book a free demo.">
+  <link rel="canonical" href="https://www.yourdomain.com/">
+  <meta property="og:title" content="AI Automation &amp; Consulting — Never Miss a Lead">
+  <meta property="og:description" content="AI automation that captures every lead, automates workflows, and drives measurable growth. Book a free demo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.yourdomain.com/">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;fm=webp">
+  <meta name="theme-color" content="#F7FAFB">
+  <meta name="color-scheme" content="light">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer="" src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- ========== CUSTOM GLOBAL STYLES ========== -->
+  <style>
+    /* Secondary inline control that matches the CTA height and aligns visually */
+    .secondary-link {
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.6rem 0;               /* vertical padding to match button height */
+      border-radius: 0.75rem;
+      text-decoration: none;
+      position: relative;
+      transition: transform 160ms ease, color 160ms ease;
+      margin-left: 0.75rem;           /* spacing from primary button */
+      line-height: 1;
+    }
+
+    /* decorative animated underline (hidden by default) */
+    .secondary-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 3px;
+      bottom: -6px;                   /* slight gap below text */
+      background: #60A5FA;
+      border-radius: 3px;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 220ms cubic-bezier(.22,.87,.11,.99);
+    }
+
+    /* hover: lift a bit and reveal underline */
+    .secondary-link:hover,
+    .secondary-link:focus {
+      transform: translateY(-3px);
+      color: #fff;
+    }
+    .secondary-link:hover::after,
+    .secondary-link:focus::after {
+      transform: scaleX(1);
+    }
+
+    /* Optional: make the little arrow a bit smaller and aligned */
+    .secondary-link i {
+      display: inline-flex;
+      transform: translateY(1px);
+    }
+
+    /* Force top header background to black and white text for nav */
+    #siteHeader {
+      background: #000 !important;
+      border-bottom: none !important;
+      transition: background-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+      z-index: 999;
+      color: #fff;
+    }
+
+    /* Desktop nav links: white, with pill-like hover (filled green) */
+    #siteHeader nav ul li a {
+      color: #fff !important;
+      padding: 0.375rem 0.5rem;
+      border-radius: 0.5rem;
+      transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-weight: 500;
+    }
+
+        #siteHeader nav ul li a:hover {
+      background-color: #fff;
+      color: #000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,255,255,0.25);
+    }
+
+
+    /* Keep Book Demo CTA visually consistent but slightly stronger on hover */
+    #siteHeader .inline-flex.bg-[#0EA5A3] {
+      box-shadow: 0 6px 20px rgba(14,165,163,0.25);
+      transition: box-shadow 180ms ease, transform 180ms ease;
+    }
+    #siteHeader .inline-flex.bg-[#0EA5A3]:hover {
+      box-shadow: 0 18px 48px rgba(14,165,163,0.32);
+      transform: translateY(-3px);
+    }
+
+    /* Mobile menu links */
+    #mobileMenu a {
+      color: #fff !important;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.5rem;
+      transition: background-color 160ms ease, transform 160ms ease;
+      display: block;
+    }
+    #mobileMenu a:hover {
+      background-color: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* Pill logo tint on dark header */
+    #siteHeader a[aria-label="Home"] .flex.h-8.w-8 {
+      background-color: rgba(14,165,163,0.06) !important;
+      color: #06b2a6 !important;
+    }
+
+    /* Global: make all section h2 white and immediate p muted white */
+    h2 {
+      color: #fff !important;
+    }
+    h2 + p {
+      color: rgba(255,255,255,0.80) !important;
+    }
+
+    /* Hero animation initial/final states handled via classes below */
+    .hero-init {
+      color: rgba(255,255,255,0.12);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: color 900ms cubic-bezier(.22,.87,.11,.99), opacity 900ms cubic-bezier(.22,.87,.11,.99), transform 900ms cubic-bezier(.22,.87,.11,.99);
+      will-change: opacity, transform, color;
+    }
+    .hero-play {
+      color: rgba(255,255,255,1) !important;
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* make sure hero text spans nicely on very large screens */
+    @media (min-width: 1280px) {
+      #heroTitle { letter-spacing: -0.01em; }
+    }
+    /* ---- NEW: How We Work card styles (bigger, uniform, background image + overlay + hover) ---- */
+    .how-cards { display:flex; gap:1.25rem; align-items:stretch; }
+    .how-card {
+      --card-h: 240px; /* default desktop height */
+      flex: 1 1 0%;
+      min-width: 0;
+      height: var(--card-h);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      color: #ffffff;
+      box-shadow: 0 18px 40px rgba(2,6,23,0.12);
+      transition: transform .28s cubic-bezier(.22,.87,.11,.99), box-shadow .28s cubic-bezier(.22,.87,.11,.99);
+      border: 1px solid rgba(255,255,255,0.04);
+      background-size: cover;
+      background-position: center center;
+      display:flex;
+      align-items:flex-end;
+      padding: 18px;
+    }
+    .how-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4,8,15,0.12) 0%, rgba(2,6,23,0.62) 60%);
+      transition: background .28s ease;
+    }
+    .how-card-content {
+      position: relative; /* appear above overlay */
+      z-index: 2;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .how-card-icon {
+      flex: 0 0 56px;
+      height:56px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(4px);
+      transition: transform .28s cubic-bezier(.22,.87,.11,.99), background .28s ease;
+    }
+    .how-card-title { font-family: Manrope, ui-sans-serif; font-weight:700; font-size:1.05rem; color:#fff; }
+    .how-card-desc { color: rgba(255,255,255,0.88); font-size:0.95rem; margin-top:4px; max-width:60%; }
+
+    /* Hover interactions */
+    .how-card:hover { transform: translateY(-10px); box-shadow: 0 36px 90px rgba(2,6,23,0.22); }
+    .how-card:hover::before { background: linear-gradient(180deg, rgba(4,8,15,0.06) 0%, rgba(2,6,23,0.5) 60%); }
+    .how-card:hover .how-card-icon { transform: translateY(-6px) scale(1.02); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); }
+
+    /* subtle action button on hover */
+    .how-card-cta { margin-left:auto; align-self:center; opacity:0; transform: translateX(8px); transition: opacity .22s ease, transform .22s ease; font-weight:600; background: rgba(255,255,255,0.06); border-radius:10px; padding:8px 10px; }
+    .how-card:hover .how-card-cta { opacity:1; transform: translateX(0); }
+
+    /* responsive sizes */
+    @media (min-width:1280px) { .how-card{ --card-h: 300px } .how-card-desc{ max-width:50% } }
+    @media (max-width:900px) { .how-cards{ flex-direction:column } .how-card{ height:200px } .how-card-desc{ max-width:100% } }
+
+    /* Keep existing process connectors hidden now (we're using unified cards) */
+    .connector-h, .connector-v { display:none !important; }
+
+    /* ===== NEW ICON STYLES for #process meta icons (matches What We Do) ===== */
+    #process .meta .icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 8px 22px rgba(2,6,23,0.45);
+      transition: transform .22s cubic-bezier(.2,.9,.2,1), background .22s ease, box-shadow .22s ease;
+      flex-shrink: 0;
+    }
+    #process .meta .icon i,
+    #process .meta .icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: #7FE3D6;
+      stroke-width: 1.6;
+      fill: none;
+    }
+    #process .hw-card:hover .meta .icon,
+    #process .meta .icon:focus {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 14px 36px rgba(2,6,23,0.55);
+      background: rgba(255,255,255,0.06);
+    }
+    @media (max-width:900px) {
+      #process .meta .icon { width:52px; height:52px; border-radius:12px; }
+      #process .meta .icon i, #process .meta .icon svg { width:22px; height:22px; }
+    }
+    
+  </style>
+  
+  <!-- ========== END CUSTOM STYLES ========== -->
+
+</head>
+<body class="antialiased bg-[#F7FAFB] text-[#0F1724] selection:bg-[#0EA5A3]/20 selection:text-[#0F1724] font-[Inter] tracking-normal">
+  <div class="aura-background-component fixed top-0 w-full h-screen -z-10">
+    <div class="spline-container absolute top-0 left-0 w-full h-full -z-10">
+      <iframe src="https://my.spline.design/fireparticleloaderanimationdrstrangeporta-2XtNK3LbyCGmClvus9SdgnYJ/" frameborder="0" width="100%" height="100%" id="aura-spline"></iframe>
+    </div>
+  </div>
+
+  <!-- Skip to content -->
+  <a href="#main" class="sr-only focus:not-sr-only focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0EA5A3] focus-visible:outline-offset-2 absolute top-2 left-2 z-[1000] rounded-md bg-white px-3 py-2 text-sm shadow-[0_6px_20px_rgba(0,0,0,0.06)]">Skip to content</a>
+
+  <!-- Header -->
+  <header id="siteHeader" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Logo -->
+        <a href="#" aria-label="Home" class="inline-flex items-center gap-2">
+          <img src="neural_network_logo.svg" alt="Anvayan Logo" class="h-64 w-64">
+<span class="sr-only">AI Automation &amp; Consulting</span>
+
+        </a>
+
+        <!-- Center Nav (desktop) -->
+        <nav aria-label="Primary" class="hidden md:block">
+          <ul class="flex items-center gap-7 text-sm font-medium">
+            <li><a href="#services" class="text-[#0F1724]/80 hover:text-[#0F1724] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA] focus-visible:outline-offset-2 rounded">Services</a></li>
+            <li><a href="#process" class="text-[#0F1724]/80 hover:text-[#0F1724] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA] focus-visible:outline-offset-2 rounded">How We Work</a></li>
+            <li><a href="#demo" class="text-[#0F1724]/80 hover:text-[#0F1724] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA] focus-visible:outline-offset-2 rounded">Demo</a></li>
+            <li><a href="#testimonials" class="text-[#0F1724]/80 hover:text-[#0F1724] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA] focus-visible:outline-offset-2 rounded">Testimonials</a></li>
+            <li><a href="#faq" class="text-[#0F1724]/80 hover:text-[#0F1724] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA] focus-visible:outline-offset-2 rounded">FAQ</a></li>
+          </ul>
+        </nav>
+
+        <!-- CTA -->
+        <div class="flex items-center gap-3">
+          <a href="#demo" class="hidden sm:inline-flex items-center justify-center rounded-xl bg-[#0EA5A3] px-4 py-2.5 text-sm font-medium text-white shadow-[0_6px_20px_rgba(14,165,163,0.25)] transition-colors duration-200 hover:bg-[#0b8f86] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#60A5FA]">
+            Book Demo
+          </a>
+          <!-- Mobile menu -->
+          <button id="menuButton" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden inline-flex h-9 w-9 items-center justify-center rounded-lg border border-black/5 bg-white text-[#0F1724] shadow-[0_4px_14px_rgba(0,0,0,0.06)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]">
+            <i data-lucide="menu" class="h-5 w-5" stroke-width="1.5" aria-hidden="true"></i>
+            <span class="sr-only">Open Menu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav -->
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300 bg-white/90 backdrop-blur border-t border-black/5">
+      <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3" aria-label="Mobile">
+        <ul class="grid gap-2 text-sm">
+          <li><a href="#services" class="block rounded-md px-3 py-2 hover:bg-black/5">Services</a></li>
+          <li><a href="#process" class="block rounded-md px-3 py-2 hover:bg-black/5">How We Work</a></li>
+          <li><a href="#demo" class="block rounded-md px-3 py-2 hover:bg-black/5">Demo</a></li>
+          <li><a href="#testimonials" class="block rounded-md px-3 py-2 hover:bg-black/5">Testimonials</a></li>
+          <li><a href="#faq" class="block rounded-md px-3 py-2 hover:bg-black/5">FAQ</a></li>
+          <li><a href="#demo" class="mt-1 inline-flex items-center justify-center rounded-xl bg-[#0EA5A3] px-4 py-2.5 text-sm font-medium text-white shadow-[0_6px_20px_rgba(14,165,163,0.25)] transition-colors duration-200 hover:bg-[#0b8f86]">Book Demo</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="pt-16">
+    <!-- Hero -->
+    <section id="hero" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-36">
+        <!-- UPDATED HERO: center-aligned, full-width text, no right image -->
+        <div class="grid grid-cols-1 gap-8 items-center">
+          <div class="relative w-full">
+            <div class="mx-auto max-w-full px-6 lg:px-10">
+              <div class="max-w-full mx-auto">
+                <h1 id="heroTitle" class="hero-init font-[Manrope] text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] leading-tight font-semibold tracking-tight text-center">
+                  Partner for Businesses That Want to Scale Smarter
+                </h1>
+
+                <p id="heroSub" class="hero-init mt-6 text-base sm:text-lg lg:text-xl max-w-4xl mx-auto text-center">
+
+                  From automation to growth strategy — we streamline operations, remove inefficiencies, and boost growth with AI-driven solutions tailored to your business.
+                </p>
+
+                <div id="heroCtas" class="hero-init mt-8 flex justify-center gap-4">
+                  <a href="#demo" class="inline-flex items-center justify-center rounded-xl bg-[#0EA5A3] px-5 py-3 text-sm font-medium text-white shadow-[0_8px_30px_rgba(14,165,163,0.22)] transition-all duration-200 hover:bg-[#0b8f86] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#60A5FA]">
+                    Book Your Free Demo
+                  </a>
+                  <a href="#services" class="secondary-link">
+                    See services
+                    <i data-lucide="arrow-right" class="h-4 w-4" stroke-width="1.5" aria-hidden="true"></i>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Decorative divider -->
+        <div class="pointer-events-none absolute inset-x-0 -top-6 flex justify-center opacity-60">
+          <div class="h-px w-[88%] bg-gradient-to-r from-transparent via-black/10 to-transparent"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Carousel -->
+    <!-- ================= REPLACEMENT: What We Do (controls removed + true infinite marquee) ================= -->
+<!-- ================= REPLACEMENT: What We Do (slower infinite marquee) ================= -->
+<section id="services" class="relative" aria-label="What we do (services)">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+     <div class="flex items-end justify-center gap-6 mb-2">
+      <h2 class="font-[Manrope] text-2xl sm:text-3xl font-semibold tracking-tight text-center">
+  What We Do
+</h2>
+
+
+    </div>
+
+    <style>
+      .services-new-wrapper { position: relative; overflow: visible; padding-bottom: 0.5rem; }
+      .services-new-track { display:flex; gap:1.25rem; align-items:stretch; padding:1rem 0; will-change:transform; }
+      .services-new-wrapper:hover .services-new-track,
+      .services-new-wrapper.paused .services-new-track { animation-play-state: paused !important; pointer-events:auto; }
+
+      .svc-new-card {
+        --size: 260px;
+        flex: 0 0 var(--size);
+        height: var(--size);
+        border-radius: 14px;
+        padding: 1rem;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        gap:0.6rem;
+        background: linear-gradient(180deg,#0f1113 0%, #15161a 100%);
+        color:#e6eef0;
+        box-shadow: 0 12px 40px rgba(2,6,23,0.6);
+        border:1px solid rgba(255,255,255,0.03);
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .svc-new-card:hover { transform: translateY(-8px); box-shadow: 0 30px 80px rgba(2,6,23,0.7); }
+
+      .svc-new-icon { width:64px; height:64px; border-radius:12px; display:inline-grid; place-items:center;
+                      background: linear-gradient(180deg, rgba(14,165,163,0.06), rgba(96,165,250,0.03)); color:#0EA5A3; flex-shrink:0; }
+      .svc-new-title { font-weight:700; font-family:Manrope,ui-sans-serif; font-size:1.05rem; color:#fff; }
+      .svc-new-desc { color:#cbd5e1; font-size:0.95rem; line-height:1.18; margin-top:0.2rem; }
+
+      .svc-new-footer { display:flex; justify-content:space-between; align-items:center; gap:0.5rem; }
+      .svc-new-ind { width:10px; height:10px; border-radius:50%; background:#06b2a6; box-shadow:0 6px 18px rgba(10,120,110,0.12); }
+
+      .svc-new-learn { background:transparent; border:none; color:#7ee7df; font-weight:600; cursor:pointer; display:inline-flex; gap:0.4rem; align-items:center; padding:0.25rem; }
+      .svc-new-learn svg{ transition: transform .18s ease; } .svc-new-learn:hover svg{ transform: translateX(4px); }
+
+      /* make sure panel looks correct */
+      #svcPanelNew { margin-top:1.25rem; border-radius:12px; background:linear-gradient(180deg,#0f1113 0%, #15161a 100%); color:#e6eef0; padding:1.25rem; box-shadow:0 20px 60px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03); display:none; }
+      #svcPanelNew.open { display:block; }
+      #svcPanelNew .panel-body { color:#cbd5e1; line-height:1.5; }
+
+      @media (max-width:1100px) { .svc-new-card{ --size:210px; flex:0 0 var(--size); height:var(--size);} }
+      @media (max-width:640px) { .services-new-track{ gap:0.75rem; padding:0.5rem 0;} .svc-new-card{ --size:170px; padding:0.75rem; } .svc-new-title{ font-size:0.95rem } .svc-new-desc{ font-size:0.85rem } }
+    </style>
+
+    <!-- wrapper + track -->
+    <div class="services-new-wrapper mt-4" id="servicesNewWrapper" aria-live="polite">
+      <div class="services-new-track" id="servicesTrackNew" aria-hidden="false" role="list" tabindex="0">
+        <!-- CRM Automation -->
+        <article class="svc-new-card" role="listitem" data-title="CRM Automation"
+                 data-full='
+<p><strong>CRM Automation — What we do</strong></p>
+<p>We centralize leads, events and customer interactions so every touchpoint is tracked and acted on.</p>
+<ul>
+  <li><strong>Event capture &amp; enrichment:</strong> forms, chat, phone, and email unified into a single timeline.</li>
+  <li><strong>Smart routing &amp; SLA:</strong> auto-route hot leads to the right rep and enforce response SLAs.</li>
+  <li><strong>Closed-loop reporting:</strong> tie conversions back to campaigns and channels for clear ROI.</li>
+  <li><strong>Personalized follow-ups:</strong> dynamic sequences that adapt to prospect behavior.</li>
+  <li><strong>Integrations &amp; ETL:</strong> connect with CRMs, marketing tools, and data warehouses.</li>
+</ul>
+<p><em>Typical outcomes:</em> 30–60% faster first response time, better pipeline visibility, and higher lead-to-meeting conversion.</p>'>
+          <div>
+            <div class="svc-new-icon" aria-hidden="true">
+              <!-- icon -->
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="3" y="7" width="18" height="11" rx="2.2" stroke="currentColor" stroke-width="1.6" fill="rgba(14,165,163,0.02)"/>
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="mt-2">
+              <div class="svc-new-title">CRM Automation</div>
+              <div class="svc-new-desc">Centralize leads, auto-route, and convert faster with SLA-driven workflows and personalized sequences.</div>
+            </div>
+          </div>
+
+          <div class="svc-new-footer">
+            <div class="svc-new-ind" title="CRM automation"></div>
+            <button class="svc-new-learn" type="button" aria-label="Learn more about CRM Automation">Learn more
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 5l7 7-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Custom Dashboards -->
+        <article class="svc-new-card" role="listitem" data-title="Custom Dashboards & Apps"
+                 data-full='
+<p><strong>Custom Dashboards &amp; Apps — What we do</strong></p>
+<p>We build lightweight, focused dashboards and small web apps that surface the metrics your team needs and remove repetitive operational tasks.</p>
+<ul><li><strong>Tailored KPIs:</strong> executive and operator views.</li><li><strong>Embedded actions:</strong> quick in-dashboard actions.</li></ul>
+<p><em>Typical outcomes:</em> faster decision-making and fewer status meetings.</p>'>
+          <div>
+            <div class="svc-new-icon" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="5" y="9" width="3" height="10" rx="0.6" fill="#0EA5A3"/>
+                <rect x="10" y="5" width="3" height="14" rx="0.6" fill="#60A5FA"/>
+                <rect x="15" y="3" width="3" height="16" rx="0.6" fill="#7dd3fc"/>
+              </svg>
+            </div>
+            <div class="mt-2">
+              <div class="svc-new-title">Custom Dashboards &amp; Apps</div>
+              <div class="svc-new-desc">Actionable dashboards and tiny apps that remove context switching and surface next best actions.</div>
+            </div>
+          </div>
+
+          <div class="svc-new-footer">
+            <div class="svc-new-ind"></div>
+            <button class="svc-new-learn" type="button">Learn more</button>
+          </div>
+        </article>
+
+        <!-- Never Miss a Lead -->
+        <article class="svc-new-card" role="listitem" data-title="Never Miss a Lead"
+                 data-full='
+<p><strong>Never Miss a Lead — What we do</strong></p>
+<p>Multi-channel capture and fast-response flows so every inquiry gets a contextual reply and correct routing.</p><p><em>Typical outcomes:</em> faster initial contact, reduced lead leakage.</p>'>
+          <div>
+            <div class="svc-new-icon" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M20 13v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="rgba(14,165,163,0.02)"/>
+              </svg>
+            </div>
+            <div class="mt-2">
+              <div class="svc-new-title">Never Miss a Lead</div>
+              <div class="svc-new-desc">Multi-channel capture, auto-qualification, and priority routing.</div>
+            </div>
+          </div>
+
+          <div class="svc-new-footer">
+            <div class="svc-new-ind"></div>
+            <button class="svc-new-learn" type="button">Learn more</button>
+          </div>
+        </article>
+
+        <!-- Workflow Automation -->
+        <article class="svc-new-card" role="listitem" data-title="Workflow Automation"
+                 data-full='
+<p><strong>Workflow Automation — What we do</strong></p>
+<p>Trigger-based flows, human-in-the-loop handoffs and SLA-driven retries that accelerate conversions.</p><p><em>Typical outcomes:</em> fewer errors and increased throughput.</p>'>
+          <div>
+            <div class="svc-new-icon" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" stroke="currentColor" stroke-width="1.4" fill="rgba(96,165,250,0.04)"/>
+              </svg>
+            </div>
+            <div class="mt-2">
+              <div class="svc-new-title">Workflow Automation</div>
+              <div class="svc-new-desc">End-to-end automation and handoffs that remove manual states.</div>
+            </div>
+          </div>
+
+          <div class="svc-new-footer">
+            <div class="svc-new-ind"></div>
+            <button class="svc-new-learn" type="button">Learn more</button>
+          </div>
+        </article>
+
+        <!-- AI-Powered Insights -->
+        <article class="svc-new-card" role="listitem" data-title="AI-Powered Insights"
+                 data-full='
+<p><strong>AI-Powered Insights — What we do</strong></p>
+<p>Predictive scoring, churn-risk flags and prioritized actions so teams focus on high-impact work.</p><p><em>Typical outcomes:</em> better prioritization and retention.</p>'>
+          <div>
+            <div class="svc-new-icon" aria-hidden="true">
+              <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l1.9 4.3L18 8l-4 2.1L12 14 10 10.1 6 8l3.9-1.7L12 2z" stroke="#ffffff" stroke-width="0.9" fill="#60A5FA" opacity="0.12"/></svg>
+            </div>
+            <div class="mt-2">
+              <div class="svc-new-title">AI-Powered Insights</div>
+              <div class="svc-new-desc">Models and signals that tell your team where to act.</div>
+            </div>
+          </div>
+
+          <div class="svc-new-footer">
+            <div class="svc-new-ind"></div>
+            <button class="svc-new-learn" type="button">Learn more</button>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- inline panel (body-only) -->
+      <div id="svcPanelNew" role="region" aria-live="polite" aria-hidden="true">
+        <div style="display:flex;justify-content:flex-end;align-items:center;">
+          <button id="svcPanelNewClose" aria-label="Close panel" style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:#e6eef0;cursor:pointer">Close</button>
+        </div>
+        <div id="svcPanelNewBody" class="panel-body" style="margin-top:10px;"></div>
+      </div>
+    </div> <!-- end wrapper -->
+
+  </div>
+
+  <script>
+    (function(){
+      const wrapper = document.getElementById('servicesNewWrapper');
+      const track = document.getElementById('servicesTrackNew');
+      const panel = document.getElementById('svcPanelNew');
+      const panelBody = document.getElementById('svcPanelNewBody');
+      const panelClose = document.getElementById('svcPanelNewClose');
+
+      if (!track) return;
+
+      /* ----------------------
+         Make the carousel infinite (slower, robust speed calc)
+         ---------------------- */
+      function makeInfiniteMarquee() {
+        const container = track.parentElement; // wrapper element width reference
+        // save originals (first pass)
+        const originals = Array.from(track.children).slice(0);
+        // remove any clones from previous runs (keep only originals)
+        // identify originals by presence of dataset.full (we assume main cards have data-full)
+        const base = originals.filter(n => n.classList && n.classList.contains('svc-new-card') && n.dataset && n.dataset.full);
+        // clear track and re-append originals to ensure clean base
+        track.innerHTML = '';
+        base.forEach(n => track.appendChild(n.cloneNode(true)));
+
+        // keep cloning until track width >= 2x container width (for good loop)
+        let totalWidth = track.scrollWidth;
+        const needed = container.clientWidth * 2;
+        let cloneIndex = 0;
+        while (totalWidth < needed) {
+          const node = base[cloneIndex % base.length].cloneNode(true);
+          node.setAttribute('aria-hidden', 'true');
+          node.setAttribute('role', 'presentation');
+          track.appendChild(node);
+          totalWidth = track.scrollWidth;
+          cloneIndex++;
+          if (cloneIndex > base.length * 8) break;
+        }
+
+        // compute the distance to move = half of full track (we duplicated until repeat)
+        const distance = track.scrollWidth / 2;
+
+        // remove any previous dynamic marquee style
+        const existing = document.getElementById('dynamic-marquee-style');
+        if (existing) existing.remove();
+
+        // Choose pixels-per-second slower values (smaller = slower)
+        const isMobile = window.innerWidth <= 640;
+        const pxPerSecond = isMobile ? 14 : 30; // <<-- SLOW speeds: 14 px/s mobile, 30 px/s desktop
+        const minDuration = isMobile ? 48 : 28; // keep sensible minimums
+
+        // duration = distance / speed (seconds)
+        let computedDuration = Math.round((distance / pxPerSecond) * 10) / 10;
+        if (computedDuration < minDuration) computedDuration = minDuration;
+
+        const style = document.createElement('style');
+        style.id = 'dynamic-marquee-style';
+        style.innerHTML = `
+          @keyframes dynamic-marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-${distance}px); }
+          }
+          #servicesTrackNew { animation: dynamic-marquee ${computedDuration}s linear infinite; }
+        `;
+        document.head.appendChild(style);
+
+        // accessibility: pause on hover
+        wrapper.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+        wrapper.addEventListener('mouseleave', () => track.style.animationPlayState = '');
+
+        // wire learn buttons (for clones too)
+        wireLearnButtons();
+      }
+
+      function wireLearnButtons(){
+        // replace nodes to remove previously attached listeners
+        Array.from(track.querySelectorAll('.svc-new-learn')).forEach(btn => {
+          btn.replaceWith(btn.cloneNode(true));
+        });
+        track.querySelectorAll('.svc-new-card .svc-new-learn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const card = e.currentTarget.closest('.svc-new-card');
+            if (!card) return;
+            const full = card.dataset.full || card.querySelector('.svc-new-desc')?.textContent || '';
+            panelBody.innerHTML = full;
+            panel.classList.add('open');
+            panel.setAttribute('aria-hidden','false');
+            panel.scrollIntoView({ behavior:'smooth', block:'nearest' });
+          });
+        });
+      }
+
+      // initial run
+      makeInfiniteMarquee();
+
+      // rebuild on resize (debonced)
+      window.addEventListener('resize', () => {
+        clearTimeout(window.__svcResizeTimer);
+        window.__svcResizeTimer = setTimeout(() => {
+          makeInfiniteMarquee();
+        }, 160);
+      });
+
+      /* Panel open/close */
+      panelClose && panelClose.addEventListener('click', () => {
+        panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && panel.classList.contains('open')) {
+          panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+        }
+      });
+    })();
+  </script>
+</section>
+<!-- ================= END REPLACEMENT ================= -->
+    <!-- ================= END REPLACEMENT ================= -->
+
+
+    <!-- UPDATED: How We Work (finalized) -->
+<section id="process" aria-label="How we work - simple cards" class="relative">
+  <style>
+    /* Section-local styles (finalized) */
+    #process { padding: 64px 0; background: transparent; }
+    #process .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    /* match "What We Do" heading scale and spacing */
+    #process h2 {
+      font-family: Manrope, system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem; /* mobile */
+      color: #ffffff;
+      margin-bottom: 42px; /* increased spacing */
+      line-height: 1.05;
+    }
+    @media (min-width:640px) { #process h2 { font-size: 1.875rem; } }
+
+    .hw-card { display:flex; gap:32px; background: linear-gradient(180deg,#0b0e11 0%, #0f1417 100%); color:#fff; border-radius:16px; overflow:hidden; box-shadow: 0 12px 30px rgba(2,6,23,0.45); margin-bottom:36px; min-height:320px; align-items:stretch; opacity:0; }
+    .hw-card .left { flex: 0 0 48%; min-width: 280px; position:relative; overflow:hidden; }
+    .hw-card .left img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hw-card .right { flex:1; padding:18px 38px; display:flex; flex-direction:column; justify-content:flex-start; }
+    /* move icon/title a little closer to top and increase space below title */
+    .hw-card .meta { display:flex; gap:12px; align-items:center; margin-bottom:12px; margin-top:6px; }
+    .hw-card .meta .icon { width:56px; height:56px; border-radius:12px; display:grid; place-items:center; background: rgba(255,255,255,0.04); }
+    .hw-card .meta .title { font-size:22px; line-height:1.08; font-weight:800; color:#fff; font-family: Manrope, ui-sans-serif; }
+    .hw-card p { margin:0; margin-top:10px; color: rgba(255,255,255,0.9); font-size:15px; line-height:1.6; max-width:64ch; }
+
+    /* Animation keyframes */
+    @keyframes slideInLeft { from { transform: translateX(-24px) translateY(6px); opacity:0; } to { transform: translateX(0) translateY(0); opacity:1; } }
+    @keyframes slideInRight { from { transform: translateX(24px) translateY(6px); opacity:0; } to { transform: translateX(0) translateY(0); opacity:1; } }
+
+    /* When visible, apply directional animation per card (updated delays) */
+    .hw-card.visible.card-1 { animation: slideInLeft 640ms cubic-bezier(.22,.87,.11,.99) both; animation-delay:0.25s; }
+    .hw-card.visible.card-2 { animation: slideInRight 640ms cubic-bezier(.22,.87,.11,.99) both; animation-delay:0.75s; }
+    .hw-card.visible.card-3 { animation: slideInLeft 640ms cubic-bezier(.22,.87,.11,.99) both; animation-delay:1.25s; }
+
+    @media (max-width:900px) {
+      #process h2 { font-size:28px; }
+      .hw-card { flex-direction:column; min-height: auto; }
+      .hw-card .left { width:100%; height:220px; flex-basis:auto; }
+      .hw-card .right { padding:16px; }
+      .hw-card .meta .title { font-size:18px; }
+      .hw-card p { font-size:14px; max-width:100%; }
+    }
+  </style>
+
+  <div class="container">
+    <h2 class="text-center">How We Work</h2>
+
+
+    <!-- Card 1 -->
+    <article class="hw-card card-1" aria-label="Free Business Audit">
+      <div class="left" aria-hidden="true">
+        <img src="https://www.thehardinggroup.biz/wp-content/uploads/2019/01/GettyImages-873806068-768x512.jpg" alt="Free Business Audit image">
+      </div>
+
+      <div class="right">
+        <div class="meta">
+          <div class="icon" aria-hidden="true">
+            <i data-lucide="search" class="lucide-icon" stroke-width="1.6"></i>
+          </div>
+          <div>
+            <div class="title">Free Business Audit</div>
+          </div>
+        </div>
+
+        <p>30-minute discovery to map your lead flow, tools, and bottlenecks. We deliver a prioritized list of quick wins and an initial ROI estimate so you know which automations pay back first.</p>
+
+        <div class="sub" aria-hidden="true">
+          <span>⏱ 30-min</span>
+          <span>•</span>
+          <span>Intro call</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="hw-card card-2" aria-label="Roadmap and Build">
+      <div class="left" aria-hidden="true">
+        <img src="https://www.cornerstonecx.com/wp-content/uploads/2022/08/BAS.jpg" alt="Roadmap and Build image">
+      </div>
+
+      <div class="right">
+        <div class="meta">
+          <div class="icon" aria-hidden="true">
+            <i data-lucide="map" class="lucide-icon" stroke-width="1.6"></i>
+          </div>
+          <div>
+            <div class="title">Roadmap &amp; Build</div>
+          </div>
+        </div>
+
+        <p>We translate the audit into a clear roadmap and ship high-impact automations in sprint cycles. Each sprint delivers working integrations, workflows, and handoffs so your team can capture more leads and close faster.</p>
+
+        <div class="sub" aria-hidden="true">
+          <span>🔧 Implementation</span>
+          <span>•</span>
+          <span>Sprint-based</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="hw-card card-3" aria-label="Monitor and Improve">
+      <div class="left" aria-hidden="true">
+        <img src="https://www.viewsonic.com/library/wp-content/uploads/2023/09/Ultrawide-monitor.png" alt="Monitor and Improve image">
+      </div>
+
+      <div class="right">
+        <div class="meta">
+          <div class="icon" aria-hidden="true">
+            <i data-lucide="line-chart" class="lucide-icon" stroke-width="1.6"></i>
+          </div>
+          <div>
+            <div class="title">Monitor &amp; Improve</div>
+          </div>
+        </div>
+
+        <p>Ongoing optimization: we instrument key metrics, run experiments, and produce weekly reports with prioritized actions. Our team monitors SLAs and alerts, performs iterative A/B tests, and adjusts routing and messaging so improvements compound over time — you get measurable, repeatable growth.</p>
+
+        <div class="sub" aria-hidden="true">
+          <span>📊 Weekly reports</span>
+          <span>•</span>
+          <span>Continuous improvement</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <script>
+    // Animate cards when #process becomes visible (run once)
+    (function(){
+      const container = document.getElementById('process');
+      if (!container) return;
+      const cards = Array.from(container.querySelectorAll('.hw-card'));
+
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // add visible class to each card (CSS handles animation delays)
+            cards.forEach(c => c.classList.add('visible'));
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+
+      io.observe(container);
+    })();
+  </script>
+</section>
+<!-- ===== end replacement block ===== -->
+
+
+    <!-- Book a Free Demo -->
+    <section id="demo" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div>
+            <h2 class="font-[Manrope] text-2xl sm:text-3xl font-semibold tracking-tight">Ready to Transform Your Business?</h2>
+            <p class="mt-3 text-sm sm:text-base text-white/80 font-medium">Book a free 30-minute demo — we’ll show a tailored automation roadmap.</p>
+            <!-- KPI Value Panel (replaces image) -->
+            <div class="mt-6 rounded-2xl overflow-hidden border border-black/5 bg-gradient-to-b from-[#0b0e11] to-[#0f1417] shadow-[0_6px_20px_rgba(0,0,0,0.45)] p-6">
+              <div class="space-y-6 text-white">
+                <div>
+                  <p class="text-xs uppercase tracking-wide text-white/60 font-semibold">Results clients see</p>
+                </div>
+
+                <!-- KPI 1 -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-[Manrope] text-4xl font-extrabold text-[#7FE3D6]">
+                      <span class="kpi-value" data-target="72">0</span><span class="kpi-percent">%</span>
+                    </p>
+                    <p class="text-sm text-white/80">Faster first response</p>
+                  </div>
+                </div>
+
+                <!-- KPI 2 -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-[Manrope] text-4xl font-extrabold text-[#7FE3D6]">
+                      <span class="kpi-value" data-target="48">0</span><span class="kpi-percent">%</span>
+                    </p>
+                    <p class="text-sm text-white/80">More leads captured</p>
+                  </div>
+                </div>
+
+                <!-- KPI 3 -->
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="font-[Manrope] text-4xl font-extrabold text-[#7FE3D6]">
+                      <span class="kpi-value" data-target="21">0</span><span class="kpi-percent">%</span>
+                    </p>
+                    <p class="text-sm text-white/80">Conversion uplift</p>
+                  </div>
+                </div>
+
+                <!-- NOTE: testimonial removed per your request -->
+
+              </div>
+            </div>
+
+          </div>
+
+                    <div class="rounded-2xl border border-black/5 bg-gradient-to-b from-[#0b0e11] to-[#0f1417] p-6 shadow-[0_6px_20px_rgba(0,0,0,0.45)] text-white">
+            <form id="demoForm" class="grid grid-cols-1 gap-4" novalidate="">
+              <!-- Honeypot -->
+              <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+
+              <div>
+                <label for="name" class="block text-sm font-medium mb-1 text-white/90">Name</label>
+                <input id="name" name="name" type="text" required
+                       class="w-full rounded-xl border border-white/10 bg-[#0b0e11] px-3 py-2.5 text-sm text-white placeholder:text-white/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]"
+                       placeholder="Full name">
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium mb-1 text-white/90">Email</label>
+                <input id="email" name="email" type="email" required
+                       class="w-full rounded-xl border border-white/10 bg-[#0b0e11] px-3 py-2.5 text-sm text-white placeholder:text-white/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]"
+                       placeholder="you@company.com">
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-1 text-white/90">Phone</label>
+                <div class="flex gap-2">
+                  <div class="relative w-32">
+                    <select id="country" name="country"
+                            class="w-full appearance-none rounded-xl border border-white/10 bg-[#0b0e11] px-3 py-2.5 pr-8 text-sm text-white placeholder:text-white/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]"
+                            aria-label="Country code">
+                      <option value="+1">+1 US</option>
+                      <option value="+44">+44 UK</option>
+                      <option value="+61">+61 AU</option>
+                      <option value="+65">+65 SG</option>
+                      <option value="+91">+91 IN</option>
+                      <option value="+49">+49 DE</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60" stroke-width="1.5" aria-hidden="true"></i>
+                  </div>
+
+                  <input id="phone" name="phone" type="tel" required pattern="^[0-9\ \-\(\)]+$"
+                         class="flex-1 rounded-xl border border-white/10 bg-[#0b0e11] px-3 py-2.5 text-sm text-white placeholder:text-white/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]"
+                         placeholder="555 123 4567">
+                </div>
+                <p class="mt-1 text-xs text-white/60">Use digits only. Country code is applied.</p>
+              </div>
+
+              <div>
+                <label for="message" class="block text-sm font-medium mb-1 text-white/90">Message (optional)</label>
+                <textarea id="message" name="message" rows="4"
+                          class="w-full rounded-xl border border-white/10 bg-[#0b0e11] px-3 py-2.5 text-sm text-white placeholder:text-white/60 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]"
+                          placeholder="Any specific issue or goal?"></textarea>
+              </div>
+
+              <!-- Consent and reCAPTCHA removed per request (no markup here) -->
+
+              <div class="mt-2">
+                <button id="submitBtn" type="submit"
+                        class="inline-flex items-center justify-center rounded-xl bg-[#0EA5A3] px-5 py-3 text-sm font-medium text-white shadow-[0_6px_20px_rgba(14,165,163,0.25)] transition-all duration-200 hover:bg-[#0b8f86] hover:shadow-[0_12px_28px_rgba(14,165,163,0.28)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#60A5FA]">
+                  <span class="btn-text">Book Free Demo</span>
+                  <i data-lucide="loader-2" class="ml-2 hidden h-4 w-4 animate-spin" stroke-width="1.5" aria-hidden="true"></i>
+                </button>
+                <p id="formError" class="mt-2 text-sm text-red-600 hidden">Something went wrong. Please try again.</p>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Success Modal -->
+      <div id="successModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/30 p-4">
+        <div class="w-full max-w-md rounded-2xl border border-black/5 bg-white p-6 shadow-[0_12px_32px_rgba(0,0,0,0.12)]">
+          <div class="flex items-start gap-3">
+            <div class="h-10 w-10 rounded-xl bg-[#0EA5A3]/10 text-[#0EA5A3] flex items-center justify-center">
+              <i data-lucide="check" class="h-5 w-5" stroke-width="1.5"></i>
+            </div>
+            <div>
+              <h3 class="font-[Manrope] text-lg font-semibold tracking-tight">Thanks! We’ll email you within 24 hours to schedule your demo.</h3>
+              <p class="mt-2 text-sm text-[#0F1724]/70">You can close this window or continue browsing.</p>
+            </div>
+          </div>
+          <div class="mt-5 flex justify-end">
+            <button id="closeModal" class="inline-flex items-center rounded-xl border border-black/10 bg-white px-4 py-2.5 text-sm font-medium hover:bg-black/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#60A5FA]">Close</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" role="status" aria-live="polite" class="fixed bottom-4 right-4 z-[70] hidden rounded-xl border border-black/5 bg-white px-4 py-3 text-sm shadow-[0_6px_20px_rgba(0,0,0,0.12)]">
+        Demo request sent successfully.
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+      <!-- Testimonials -->
+<!-- Testimonials -->
+      <section id="testimonials" class="relative">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+          <h2 class="font-[Manrope] text-2xl sm:text-3xl font-semibold tracking-tight text-center mb-5">What Our Clients Say</h2>
+
+
+          <style>
+            /* Updated testimonial styles: center-aligned content + smaller boxes */
+            #testimonials .ts-card { 
+              background: linear-gradient(180deg,#0b0e11 0%, #0f1417 100%); 
+              color: #fff; 
+              border-radius: 12px; 
+              padding: 24px; /* reduced from 18px */
+              box-shadow: 0 10px 30px rgba(2,6,23,0.45); 
+              border:1px solid rgba(255,255,255,0.04);
+              max-width: 800px; /* limit maximum width */
+              margin: 0 auto; /* center the card */
+            }
+            #testimonials .ts-quote { 
+              color: rgba(255,255,255,0.92); 
+              font-size:1.05rem; 
+              line-height:1.6; 
+              margin:0;
+              text-align: center; /* center align quote text */
+            }
+            #testimonials .ts-caption { 
+              margin-top:16px; /* increased spacing from quote */
+              color: rgba(255,255,255,0.85); 
+              font-weight:600;
+              text-align: center; /* center align attribution */
+            }
+            #testimonials .ts-dots { 
+              display:flex; 
+              gap:12px; 
+              justify-content:center; 
+              margin-top:20px; /* slightly increased spacing */
+            }
+            #testimonials .ts-dots button { 
+              width:44px; 
+              height:44px; 
+              padding:0; 
+              border-radius:9999px; 
+              background:transparent; 
+              border:none; 
+              display:inline-flex; 
+              align-items:center; 
+              justify-content:center; 
+              cursor:pointer; 
+            }
+            #testimonials .ts-dot-inner { 
+              width:12px; 
+              height:12px; 
+              border-radius:9999px; 
+              background:rgba(255,255,255,0.22); 
+              transition: transform .14s ease, background .14s ease; 
+            }
+            #testimonials .ts-dots button[aria-current="true"] .ts-dot-inner { 
+              background:#06b2a6; 
+              transform:scale(1.05); 
+              box-shadow:0 8px 20px rgba(6,178,166,0.16); 
+            }
+            #testimonials .ts-dots button:focus { 
+              outline: 2px solid rgba(6,178,166,0.12); 
+              outline-offset:4px; 
+              border-radius:full; 
+            }
+          </style>
+
+          <div class="mt-20 ts-card relative rounded-2xl">
+
+            <div id="tsContainer" class="relative h-36 sm:h-32 overflow-hidden" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Client testimonials">
+              <!-- Testimonial 1 -->
+              <figure class="ts-item absolute inset-0 opacity-100 transition-opacity duration-500 ease-out">
+                <blockquote class="ts-quote">"Within two weeks, our first-response time dropped from hours to seconds. Pipeline visibility is night and day."</blockquote>
+                <figcaption class="ts-caption">Alex P. — VP Growth</figcaption>
+              </figure>
+              <!-- Testimonial 2 -->
+              <figure class="ts-item absolute inset-0 opacity-0 transition-opacity duration-500 ease-out">
+                <blockquote class="ts-quote">"They automated the CRM and built a dashboard our execs actually use. ROI was clear in the first month."</blockquote>
+                <figcaption class="ts-caption">Morgan T. — COO</figcaption>
+              </figure>
+              <!-- Testimonial 3 -->
+              <figure class="ts-item absolute inset-0 opacity-0 transition-opacity duration-500 ease-out">
+                <blockquote class="ts-quote">"Our lead-to-meeting rate doubled. The handoffs are flawless and fully tracked."</blockquote>
+                <figcaption class="ts-caption">Jamie L. — Head of Sales</figcaption>
+              </figure>
+            </div>
+
+            <div class="mt-4 flex items-center justify-center gap-3 ts-dots" role="tablist" aria-label="Testimonials navigation">
+              <button class="ts-dot" aria-current="true" aria-label="Show testimonial 1"><span class="ts-dot-inner" aria-hidden="true"></span></button>
+              <button class="ts-dot" aria-current="false" aria-label="Show testimonial 2"><span class="ts-dot-inner" aria-hidden="true"></span></button>
+              <button class="ts-dot" aria-current="false" aria-label="Show testimonial 3"><span class="ts-dot-inner" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    <!-- FAQ -->
+    
+    <!-- FAQ (dark accordion version) -->
+    <section id="faq" class="relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <h2 class="font-[Manrope] text-2xl sm:text-3xl font-semibold tracking-tight text-center">FAQ</h2>
+
+
+        <style>
+          /* Scoped FAQ styles: dark card + white text + accordion look */
+          #faq .faq-list { display:grid; gap:18px; margin-top:1.25rem; }
+          #faq .faq-card {
+            background: linear-gradient(180deg,#0b0e11 0%, #0f1417 100%);
+            color: #fff;
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 12px 36px rgba(2,6,23,0.48);
+            border: 1px solid rgba(255,255,255,0.04);
+            overflow: hidden;
+          }
+          #faq .faq-row { display:flex; align-items:center; gap:16px; width:100%; }
+          #faq .faq-title { flex:1; text-align:left; font-weight:700; font-size:1rem; color:rgba(255,255,255,0.95); }
+          #faq .faq-toggle {
+            width:44px; height:44px; border-radius:10px; display:inline-grid; place-items:center; background: rgba(255,255,255,0.04); border:none; cursor:pointer;
+            transition: transform .12s ease, background .12s ease;
+          }
+          #faq .faq-toggle:focus { outline: 2px solid rgba(6,178,166,0.14); outline-offset:3px; }
+          #faq .faq-toggle .plus { font-size:20px; line-height:1; color: #fff; transform-origin:center; transition: transform .18s ease; }
+          #faq .faq-toggle[aria-expanded="true"] { background: rgba(6,178,166,0.12); }
+          #faq .faq-toggle[aria-expanded="true"] .plus { transform: rotate(45deg); } /* + becomes x-ish when open */
+
+          #faq .faq-panel {
+            margin-top:10px;
+            color: rgba(255,255,255,0.86);
+            font-size:0.95rem;
+            line-height:1.6;
+            max-height:0; overflow:hidden; transition: max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease;
+            opacity:0;
+          }
+          #faq .faq-panel.open { opacity:1; max-height:420px; } /* large enough for normal answers */
+
+          /* smaller screens: stack toggle to the right */
+          @media (max-width:720px) {
+            #faq .faq-row { gap:12px; }
+            #faq .faq-title { font-size:0.98rem; }
+            #faq .faq-toggle { width:40px; height:40px; }
+          }
+        </style>
+
+        <div class="faq-list" role="list" aria-label="Frequently asked questions">
+          <!-- Item 1 -->
+          <div class="faq-card" role="listitem">
+            <div class="faq-row">
+              <div class="faq-title">How fast can we get started?</div>
+              <button class="faq-toggle" aria-expanded="false" aria-controls="faq-panel-1" aria-label="Show answer for How fast can we get started?">
+                <span class="plus" aria-hidden="true">+</span>
+              </button>
+            </div>
+            <div id="faq-panel-1" class="faq-panel" role="region" aria-hidden="true">
+              Discovery within a few days. First automation shipped in 1–2 weeks depending on scope.
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="faq-card" role="listitem">
+            <div class="faq-row">
+              <div class="faq-title">What tools do you work with?</div>
+              <button class="faq-toggle" aria-expanded="false" aria-controls="faq-panel-2" aria-label="Show answer for What tools do you work with?">
+                <span class="plus" aria-hidden="true">+</span>
+              </button>
+            </div>
+            <div id="faq-panel-2" class="faq-panel" role="region" aria-hidden="true">
+              We integrate with your stack and build light custom apps/dashboards where needed.
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="faq-card" role="listitem">
+            <div class="faq-row">
+              <div class="faq-title">How do you measure ROI?</div>
+              <button class="faq-toggle" aria-expanded="false" aria-controls="faq-panel-3" aria-label="Show answer for How do you measure ROI?">
+                <span class="plus" aria-hidden="true">+</span>
+              </button>
+            </div>
+            <div id="faq-panel-3" class="faq-panel" role="region" aria-hidden="true">
+              Clear metrics: response times, conversion rates, revenue impact, and operational savings.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accordion behavior (scoped) -->
+      <script>
+        (function(){
+          const faq = document.getElementById('faq');
+          if (!faq) return;
+          const toggles = Array.from(faq.querySelectorAll('.faq-toggle'));
+          // close others when one opens if you prefer single-open behavior; set keepMultiple=true to allow multiple open
+          const keepMultiple = false;
+
+          toggles.forEach(btn => {
+            const panelId = btn.getAttribute('aria-controls');
+            const panel = document.getElementById(panelId);
+            if (!panel) return;
+
+            // click handler
+            btn.addEventListener('click', () => {
+              const expanded = btn.getAttribute('aria-expanded') === 'true';
+              if (!expanded && !keepMultiple) {
+                // close others
+                toggles.forEach(other => {
+                  if (other === btn) return;
+                  other.setAttribute('aria-expanded','false');
+                  const pid = other.getAttribute('aria-controls');
+                  const p = document.getElementById(pid);
+                  if (p) { p.classList.remove('open'); p.setAttribute('aria-hidden','true'); }
+                });
+              }
+              btn.setAttribute('aria-expanded', String(!expanded));
+              if (!expanded) {
+                panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
+              } else {
+                panel.classList.remove('open'); panel.setAttribute('aria-hidden','true');
+              }
+            });
+
+            // keyboard support (Enter/Space)
+            btn.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                btn.click();
+              }
+              if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                // focus next toggle
+                const idx = toggles.indexOf(btn);
+                if (idx >= 0 && idx < toggles.length - 1) toggles[idx+1].focus();
+              }
+              if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                const idx = toggles.indexOf(btn);
+                if (idx > 0) toggles[idx-1].focus();
+              }
+            });
+          });
+        })();
+      </script>
+    </section>
+
+  </main>
+
+  <!-- ========== ORIGINAL INTERACTIVE SCRIPTS (left mostly intact) ========== -->
+  <script>
+    // Ensure icons render with consistent stroke width
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide && window.lucide.createIcons) {
+        // updated stroke-width so lucide SVGs match the icon CSS
+        window.lucide.createIcons({ attrs: { 'stroke-width': 1.6 } });
+      }
+    });
+
+    // Header scroll styling (original): keep but our CSS will enforce black bg
+    const siteHeader = document.getElementById('siteHeader');
+    const setHeaderStyle = () => {
+      const scrolled = window.scrollY > 8;
+      siteHeader.classList.toggle('backdrop-blur', scrolled);
+      siteHeader.classList.toggle('bg-white/70', scrolled);
+      siteHeader.classList.toggle('border-b', scrolled);
+      siteHeader.classList.toggle('border-black/5', scrolled);
+      siteHeader.classList.toggle('shadow-[0_4px_14px_rgba(0,0,0,0.06)]', scrolled);
+    };
+    setHeaderStyle();
+    window.addEventListener('scroll', setHeaderStyle, { passive: true });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', String(!expanded));
+        const targetHeight = expanded ? 0 : mobileMenu.scrollHeight;
+        mobileMenu.style.maxHeight = targetHeight + 'px';
+      });
+      // Close on resize up
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          mobileMenu.style.maxHeight = '0px';
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Hero reveal (original simple approach removed — we'll trigger a refined animation below)
+    window.addEventListener('load', () => {
+      ['heroTitle','heroSub','heroCtas'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          // safety: remove any pre-existing opacity classes that might block our animation
+          el.classList.remove('opacity-0','translate-y-2');
+        }
+      });
+    });
+
+    // Services carousel
+    (function(){
+      const track = document.getElementById('srvTrack');
+      const prev = document.getElementById('srvPrev');
+      const next = document.getElementById('srvNext');
+      const dots = document.getElementById('srvDots');
+      if (!track || !dots) return;
+
+      const slides = Array.from(track.querySelectorAll('.srv-slide'));
+      let index = 0;
+      let width = 0;
+
+      function size() {
+        width = track.parentElement.clientWidth;
+        slides.forEach(s => s.style.width = width + 'px');
+        goTo(index, false);
+      }
+
+      function buildDots() {
+        dots.innerHTML = '';
+        slides.forEach((_, i) => {
+          const b = document.createElement('button');
+          b.className = 'h-2.5 w-2.5 rounded-full bg-black/20 aria-[current=true]:bg-[#0EA5A3]';
+          b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+          b.setAttribute('aria-current', i === index ? 'true' : 'false');
+          b.addEventListener('click', () => goTo(i));
+          dots.appendChild(b);
+        });
+      }
+
+      function updateDots() {
+        Array.from(dots.children).forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      }
+
+      function goTo(i, animate = true) {
+        index = Math.max(0, Math.min(i, slides.length - 1));
+        track.style.transition = animate ? 'transform 400ms cubic-bezier(.22,.87,.11,.99)' : 'none';
+        track.style.transform = 'translateX(' + (-index * width) + 'px)';
+        updateDots();
+      }
+
+      size();
+      buildDots();
+      window.addEventListener('resize', size);
+      prev && prev.addEventListener('click', () => goTo(index - 1));
+      next && next.addEventListener('click', () => goTo(index + 1));
+    })();
+
+    // Process step reveal + connectors
+    (function(){
+      const reveals = document.querySelectorAll('.step-reveal');
+      const connectorsH = document.querySelectorAll('.connector-h');
+      const connectorsV = document.querySelectorAll('.connector-v');
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('opacity-0','translate-y-2');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      reveals.forEach(el => io.observe(el));
+
+      const io2 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target.querySelector('.connector-h');
+            if (el) el.style.width = '100%';
+            const elv = entry.target.querySelector('.connector-v');
+            if (elv) elv.style.height = '24px';
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('#process .relative').forEach(el => io2.observe(el));
+    })();
+
+    // Form handling
+    (function(){
+      const form = document.getElementById('demoForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const loaderIcon = submitBtn ? submitBtn.querySelector('[data-lucide="loader-2"]') : null;
+      const formError = document.getElementById('formError');
+      const modal = document.getElementById('successModal');
+      const closeModal = document.getElementById('closeModal');
+      const toast = document.getElementById('toast');
+      const recaptchaToggle = document.getElementById('enableRecaptcha');
+
+      // Toggle
+      if (recaptchaToggle) {
+        recaptchaToggle.addEventListener('click', () => {
+          const pressed = recaptchaToggle.getAttribute('aria-pressed') === 'true';
+          recaptchaToggle.setAttribute('aria-pressed', String(!pressed));
+          recaptchaToggle.classList.toggle('bg-[#0EA5A3]/90', !pressed);
+          const dot = recaptchaToggle.querySelector('.dot');
+          if (dot) {
+            dot.classList.toggle('translate-x-4', !pressed);
+            dot.classList.toggle('translate-x-0', pressed);
+          }
+        });
+      }
+
+      function showModal() {
+        if (!modal) return;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+      function hideModal() {
+        if (!modal) return;
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      closeModal && closeModal.addEventListener('click', hideModal);
+      modal && modal.addEventListener('click', (e) => {
+        if (e.target === modal) hideModal();
+      });
+
+      function showToast() {
+        if (!toast) return;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 2400);
+      }
+
+      form && form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  formError && formError.classList.add('hidden');
+
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    message: document.getElementById('message').value
+  };
+
+  try {
+    await fetch("https://script.google.com/a/macros/anvayan.com/s/AKfycbzZlo-mQ4NkWUYql2knVBxD21xzS4iiwr7eshMRZxik33x532uBoiK06o7UkBtL1BaI/exec", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    showModal();
+    showToast();
+    form.reset();
+
+  } catch (err) {
+    formError && formError.classList.remove('hidden');
+  } finally {
+    submitBtn && submitBtn.removeAttribute('disabled');
+    loaderIcon && loaderIcon.classList.add('hidden');
+  }
+});
+
+        // Basic validation
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Simulate submit
+        submitBtn && submitBtn.setAttribute('disabled', 'true');
+        loaderIcon && loaderIcon.classList.remove('hidden');
+        try {
+          await new Promise(r => setTimeout(r, 900));
+          showModal();
+          showToast();
+          form.reset();
+          // Reset toggle UI if needed
+          if (recaptchaToggle) {
+            recaptchaToggle.setAttribute('aria-pressed', 'false');
+            recaptchaToggle.classList.remove('bg-[#0EA5A3]/90');
+            const dot = recaptchaToggle.querySelector('.dot');
+            if (dot) {
+              dot.classList.remove('translate-x-4');
+              dot.classList.add('translate-x-0');
+            }
+          }
+        } catch (err) {
+          formError && formError.classList.remove('hidden');
+        } finally {
+          submitBtn && submitBtn.removeAttribute('disabled');
+          loaderIcon && loaderIcon.classList.add('hidden');
+        }
+      });
+    })();
+
+    // Testimonials rotation
+      // Testimonials rotation (improved: slower autoplay, keyboard nav, pause on hover/focus, accessible dots)
+    (function(){
+      const container = document.getElementById('tsContainer');
+      if (!container) return;
+      const items = Array.from(container.querySelectorAll('.ts-item'));
+      const dots = Array.from(container.parentElement.querySelectorAll('.ts-dot'));
+      let i = 0;
+      let timer;
+
+      function show(n) {
+        i = (n + items.length) % items.length;
+        items.forEach((el, idx) => {
+          el.style.opacity = idx === i ? '1' : '0';
+        });
+        dots.forEach((d, idx) => d.setAttribute('aria-current', idx === i ? 'true' : 'false'));
+      }
+
+      function start() {
+        stop();
+        // slower autoplay for readability (6 seconds)
+        timer = setInterval(() => show(i + 1), 6000);
+      }
+      function stop() {
+        if (timer) clearInterval(timer);
+      }
+
+      // dot clicks + keyboard activation
+      dots.forEach((d, idx) => {
+        d.addEventListener('click', () => {
+          show(idx);
+          start();
+        });
+        d.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(idx); start(); }
+        });
+        // ensure dot is focusable (for keyboard)
+        d.setAttribute('tabindex','0');
+      });
+
+      // pause on hover or focus within container (or on dots)
+      const pause = () => stop();
+      const resume = () => start();
+      container.addEventListener('mouseenter', pause);
+      container.addEventListener('mouseleave', resume);
+      container.addEventListener('focusin', pause);
+      container.addEventListener('focusout', resume);
+
+      // keyboard left / right navigation when container has focus
+      container.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { show(i - 1); start(); }
+        if (e.key === 'ArrowRight') { show(i + 1); start(); }
+      });
+
+      // init
+      show(0);
+      start();
+    })();
+
+  </script>
+
+  <!-- ========== ADDITIONAL SCRIPTS: hero animation trigger & header safety ========== -->
+  <!-- ========== ADDITIONAL SCRIPTS: hero animation trigger & header safety + KPI animator ========== -->
+<script>
+  // Ensure header stays visually black (safety)
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('siteHeader');
+    if (header) {
+      header.style.backgroundColor = '#000';
+      header.style.color = '#fff';
+    }
+  });
+
+  // Trigger hero fade-from-faded -> dark animation in order (staggered)
+  window.addEventListener('load', () => {
+    const ids = ['heroTitle','heroSub','heroCtas'];
+    ids.forEach((id, idx) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add('hero-init');
+      const delay = 140 + idx * 160; // ms
+      setTimeout(() => { el.classList.add('hero-play'); }, delay);
+    });
+  });
+
+  // KPI count-up when #demo enters view
+  (function(){
+    const demoSection = document.getElementById('demo');
+    if (!demoSection) return;
+    const kpis = Array.from(demoSection.querySelectorAll('.kpi-value'));
+    if (!kpis.length) return;
+
+    function animateValue(el, start, end, duration) {
+      let startTime = null;
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const value = Math.floor(progress * (end - start) + start);
+        el.textContent = value;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          el.textContent = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    // Observe the demo section — when it crosses the viewport (40%) we trigger the count-up once
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          kpis.forEach(k => {
+            const target = parseInt(k.dataset.target, 10) || 0;
+            // Duration can be tuned; 1400ms feels snappy
+            animateValue(k, 0, target, 1400);
+          });
+          obs.disconnect(); // run only once
+        }
+      });
+    }, { threshold: 0.4 });
+
+    io.observe(demoSection);
+  })();
+</script>
+
+<!-- ================= Footer (Anvayan) - Improved icons ================= -->
+<footer id="siteFooter" aria-label="Site footer" style="background:linear-gradient(180deg,#071019 0%, #0b1520 100%);">
+  <style>
+    /* Footer local styles */
+    #siteFooter { padding: 48px 0 36px; color: #cbd5e1; font-family: Inter, system-ui, sans-serif; }
+    #siteFooter .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+    #siteFooter .grid { display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; align-items:start; }
+
+
+    /* HEADINGS: teal to match site */
+    #siteFooter h4 {
+      color: #06b2a6; /* TEAL accent */
+      font-weight: 700;
+      margin: 0 0 12px 0;
+      font-size: 0.95rem;
+    }
+
+    #siteFooter p, #siteFooter li, #siteFooter a { color: rgba(255,255,255,0.78); font-size: 0.98rem; line-height: 1.6; text-decoration: none; }
+    #siteFooter ul { list-style: none; padding: 0; margin: 0; display:block; }
+    #siteFooter li { margin-bottom: 10px; }
+    #siteFooter a.footer-link { color: rgba(255,255,255,0.78); transition: color 160ms ease; }
+    #siteFooter a.footer-link:hover, #siteFooter a.footer-link:focus { color: #fff; }
+
+    .brand-desc { max-width: 36rem; margin-bottom: 12px; color: rgba(255,255,255,0.78); font-size: 0.98rem; }
+    .social-row { display:flex; gap:12px; margin-top:12px; }
+    .social-btn { width:44px; height:44px; display:inline-grid; place-items:center; border-radius:10px; background: rgba(255,255,255,0.02); color: rgba(255,255,255,0.95); transition: background .16s, transform .12s; }
+    .social-btn:hover { background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+
+    .contact-items { display:flex; flex-direction:column; gap:10px; }
+    .contact-items a { display:inline-flex; gap:10px; align-items:center; color: rgba(255,255,255,0.82); }
+
+    .footer-hr { margin: 26px 0; height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent); border: none; }
+
+    .footer-bottom { display:flex; justify-content:center; color: rgba(255,255,255,0.66); font-size:0.95rem; padding-top: 12px; }
+
+    /* responsive */
+    @media (max-width:1000px) {
+      #siteFooter .grid { grid-template-columns: 1fr; gap: 20px; }
+      .brand-desc { max-width: 100%; }
+      .footer-bottom { text-align:center; }
+    }
+  </style>
+
+  <div class="container">
+    <div class="grid" role="group" aria-label="Footer links">
+      <!-- Brand / About -->
+      <div>
+        <img src="neural_network_logo.svg" alt="Anvayan Logo" class="h-16 w-auto mb-3">
+
+        <div class="social-row" aria-hidden="false">
+          <!-- Facebook (clean standard "f" logo) -->
+          <a class="social-btn" href="#" aria-label="Facebook" title="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M22 12.074C22 6.507 17.523 2 12 2S2 6.507 2 12.074C2 17.09 5.656 21.254 10.437 22v-7.01H7.898v-2.916h2.539V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.916h-2.33V22C18.344 21.254 22 17.09 22 12.074z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+
+          <!-- LinkedIn (standard "in" mark) -->
+          <a class="social-btn" href="#" aria-label="LinkedIn" title="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="3" width="20" height="18" rx="2" stroke="currentColor" stroke-width="1"></rect>
+              <path d="M7.5 10.5v6M7.5 8.5v.01M16.5 16.5v-4a2.5 2.5 0 0 0-2.5-2.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </a>
+
+          <!-- Instagram (camera shape with circle) -->
+          <a class="social-btn" href="#" aria-label="Instagram" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1"></rect>
+              <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1"></circle>
+              <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h4>Quick Links</h4>
+        <ul aria-label="Quick links">
+          <li><a class="footer-link" href="#hero">Home</a></li>
+          <li><a class="footer-link" href="#services">Features</a></li>
+          <li><a class="footer-link" href="#process">How we work</a></li>
+          <li><a class="footer-link" href="#demo">Book demo</a></li>
+        </ul>
+      </div>
+
+      
+
+      <!-- Contact -->
+      <div>
+        <h4>Contact Us</h4>
+        <div class="contact-items" aria-label="Contact information">
+          <a href="mailto:connect@anvayan.com" class="footer-link" aria-label="Email Anvayan">
+            <!-- envelope icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;" aria-hidden="true">
+              <path d="M3 7.5v9A2.5 2.5 0 0 0 5.5 19h13A2.5 2.5 0 0 0 21 16.5v-9" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 7.5l-8.5 6-8.5-6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>connect@anvayan.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-hr" />
+
+    <div class="footer-bottom" role="contentinfo">
+      <div>&copy; <span id="footerYear"></span> Anvayan. All rights reserved.</div>
+    </div>
+  </div>
+
+  <script>
+    // small helper: set current year
+    (function(){
+      const y = new Date().getFullYear();
+      const el = document.getElementById('footerYear');
+      if (el) el.textContent = y;
+    })();
+  </script>
+</footer>
+<!-- ================= End Footer ================= -->
+
+
+</body></html>
